@@ -15,6 +15,8 @@ public class HelloController {
 
     private Label[][] tomb= new Label[10][15];
     private AnimationTimer timer =null;
+    private String [][] chtomb= new String[10][15];
+    private long now;
     int ures =0;
     int doboz=0;
 
@@ -22,13 +24,14 @@ public class HelloController {
         for(int s=0;s<10;s++){
             for(int o=0;o<15;o++){
                 tomb[s][o]= new Label();
+                chtomb[s][o]="null";
                 tomb[s][o].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("null.png"))));
                 tomb[s][o].setTranslateX(10+o*64);
                 tomb[s][o].setTranslateY(10+s*64);
                 int ss=s,oo=o;
                 tomb[s][o].setOnMouseEntered(e -> tomb[ss][oo].setStyle("-fx-background-color: lightgreen;"));
                 tomb[s][o].setOnMouseExited(e -> tomb[ss][oo].setStyle("-fx-background-color: white;"));
-                //tomb[s][o].setOnMouseClicked(e -> katt(ss,oo));
+                tomb[s][o].setOnMouseClicked(e -> katt(ss,oo));
                 pnJatek.getChildren().add(tomb[s][o]);
             }
         }
@@ -36,28 +39,54 @@ public class HelloController {
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                nyil.setRotate(nyil.getRotate()+6);
+                if(now>l){
+                    l=now+50000000;
+                    nyil.setRotate(nyil.getRotate()+1);
+                    remove();
+                }
+
             }
         };
         timer.start();
     }
-    /*public void katt(int s,int o){
-        if(tomb[s][o]=="box.png"){
-            ures++;
+    public void remove(){
+        for(int i=0;i<10;i++){
+            for(int j=0;j<15;j++){
+                if(chtomb[i][j].equals("boxopen")){
+                    tomb[i][j].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("null.png"))));
+                    chtomb[i][j]="null";
+                }
+            }
         }
-        if(){
-            doboz++;
+    }
+    public void katt(int s,int o){
+        if(chtomb[s][o].equals("box")&&chtomb[s-1][o].equals("null")){
+            tomb[s][o].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("boxopen.png"))));
+            chtomb[s][o]="boxopen";
+            ures++;
+            doboz--;
+        }
+        if(chtomb[s][o].equals("null")){
+            if(chtomb[s+1][o].equals("box")){
+                tomb[s][o].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("box.png"))));
+                chtomb[s][o]="box";
+                doboz++;
+            }
+
         }
         lbclose.setText(doboz+"");
         lbopen.setText(ures+"");
-    }*/
+    }
     public void doboz(){
-        int rand=(int) (Math.random()*10);
-        int rand1=(int) (Math.random()*15);
-        for(int i=0;i<rand;i++){
-            for(int j=0;j<rand1;j++){
+
+        for(int i=2;i<7;i++){
+            for(int j=0;j<10;j++){
                 tomb[i][j].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("box.png"))));
+                chtomb[i][j]="box";
+                doboz++;
+
             }
         }
+        lbclose.setText(doboz+"");
     }
 }
