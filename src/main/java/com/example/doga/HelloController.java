@@ -15,7 +15,7 @@ public class HelloController {
     public void initialize(){
         for(int s=0;s<10;s++){
             for(int o=0;o<15;o++){
-                tomb[s][o]
+
             }
         }
     }
