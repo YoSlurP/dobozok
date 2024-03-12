@@ -36,7 +36,7 @@
                </image>
             </ImageView>
             <Label maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-            <Button mnemonicParsing="false" text="Random" />
+            <Button mnemonicParsing="false" onAction="#doboz" text="Random" />
          </children>
       </VBox>
    </children>

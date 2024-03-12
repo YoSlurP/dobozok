@@ -15,20 +15,24 @@ public class HelloController {
 
     private Label[][] tomb= new Label[10][15];
     private AnimationTimer timer =null;
+    int ures =0;
+    int doboz=0;
 
     public void initialize(){
         for(int s=0;s<10;s++){
             for(int o=0;o<15;o++){
                 tomb[s][o]= new Label();
-                tomb[s][o].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("box.png"))));
+                tomb[s][o].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("null.png"))));
                 tomb[s][o].setTranslateX(10+o*64);
                 tomb[s][o].setTranslateY(10+s*64);
                 int ss=s,oo=o;
                 tomb[s][o].setOnMouseEntered(e -> tomb[ss][oo].setStyle("-fx-background-color: lightgreen;"));
                 tomb[s][o].setOnMouseExited(e -> tomb[ss][oo].setStyle("-fx-background-color: white;"));
+                //tomb[s][o].setOnMouseClicked(e -> katt(ss,oo));
                 pnJatek.getChildren().add(tomb[s][o]);
             }
         }
+        doboz();
         timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -36,5 +40,24 @@ public class HelloController {
             }
         };
         timer.start();
+    }
+    /*public void katt(int s,int o){
+        if(tomb[s][o]=="box.png"){
+            ures++;
+        }
+        if(){
+            doboz++;
+        }
+        lbclose.setText(doboz+"");
+        lbopen.setText(ures+"");
+    }*/
+    public void doboz(){
+        int rand=(int) (Math.random()*10);
+        int rand1=(int) (Math.random()*15);
+        for(int i=0;i<rand;i++){
+            for(int j=0;j<rand1;j++){
+                tomb[i][j].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("box.png"))));
+            }
+        }
     }
 }
