@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+
+<HBox xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.doga.HelloController">
+   <children>
+      <Pane fx:id="pnJatek" prefHeight="640.0" prefWidth="960.0" style="-fx-background-color: white; -fx-border-color: grey;">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Pane>
+      <VBox alignment="TOP_CENTER">
+         <children>
+            <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@boxopen.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbopen" text="0" />
+            <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@box.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lbclose" text="0" />
+            <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@arrow.png" />
+               </image>
+            </ImageView>
+            <Label maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+            <Button mnemonicParsing="false" text="Random" />
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</HBox>
